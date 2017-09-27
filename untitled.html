@@ -1,103 +1,108 @@
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>D3: Axis moved to the bottom</title>
-    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-    <style type="text/css">
-      
-      .axis path,
-      .axis line {
-        fill: none;
-        stroke: black;
-        shape-rendering: crispEdges;
-      }
-      
-      .axis text {
-        font-family: sans-serif;
-        font-size: 11px;
-      }
+<head>
+    <meta  http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <title>test2</title>    
+   <script src="d3.v3.min.js"></script> 
+   <script src="jquery.min.js"></script>
+   <script src="d3CheckBox.js"></script>
+   <script src="echarts.js"></script>
 
-    </style>
-  </head>
-  <body>
-    <script type="text/javascript">
+</head>    
+<body>
 
-      //Width and height
-      var w = 500;
-      var h = 300;
-      var padding = 20;
-      
-      var dataset = [
-              [5, 20], [480, 90], [250, 50], [100, 33], [330, 95],
-              [410, 12], [475, 44], [25, 67], [85, 21], [220, 88],
-              [600, 150]
-              ];
+<script>
 
-      //Create scale functions
-      var xScale = d3.scale.linear()
-                 .domain([0, d3.max(dataset, function(d) { return d[0]; })])
-                 .range([padding, w - padding * 2]);
+app.title = '堆叠条形图';
 
-      var yScale = d3.scale.linear()
-                 .domain([0, d3.max(dataset, function(d) { return d[1]; })])
-                 .range([h - padding, padding]);
+option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data: ['直接访问', '邮件营销','联盟广告','视频广告','搜索引擎']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['周一','周二','周三','周四','周五','周六','周日']
+    },
+    series: [
+        {
+            name: '直接访问',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [320, 302, 301, 334, 390, 330, 320]
+        },
+        {
+            name: '邮件营销',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name: '联盟广告',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name: '视频广告',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [150, 212, 201, 154, 190, 330, 410]
+        },
+        {
+            name: '搜索引擎',
+            type: 'bar',
+            stack: '总量',
+            label: {
+                normal: {
+                    show: true,
+                    position: 'insideRight'
+                }
+            },
+            data: [820, 832, 901, 934, 1290, 1330, 1320]
+        }
+    ]
+};
 
-      var rScale = d3.scale.linear()
-                 .domain([0, d3.max(dataset, function(d) { return d[1]; })])
-                 .range([2, 5]);
+</script>
 
-      //Define X axis
-      var xAxis = d3.svg.axis()
-                .scale(xScale)
-                .orient("bottom");
-
-      //Create SVG element
-      var svg = d3.select("body")
-            .append("svg")
-            .attr("width", w)
-            .attr("height", h);
-
-      //Create circles
-      svg.selectAll("circle")
-         .data(dataset)
-         .enter()
-         .append("circle")
-         .attr("cx", function(d) {
-            return xScale(d[0]);
-         })
-         .attr("cy", function(d) {
-            return yScale(d[1]);
-         })
-         .attr("r", function(d) {
-            return rScale(d[1]);
-         });
-
-      //Create labels
-      svg.selectAll("text")
-         .data(dataset)
-         .enter()
-         .append("text")
-         .text(function(d) {
-            return d[0] + "," + d[1];
-         })
-         .attr("x", function(d) {
-            return xScale(d[0]);
-         })
-         .attr("y", function(d) {
-            return yScale(d[1]);
-         })
-         .attr("font-family", "sans-serif")
-         .attr("font-size", "11px")
-         .attr("fill", "red");
-      
-      
-      //Create X axis
-      svg.append("g")
-        .attr("class", "axis")
-        .attr("transform", "translate(0," + (h - padding) + ")")
-        .call(xAxis);
-
-    </script>
-  </body>
+</body>
 </html>

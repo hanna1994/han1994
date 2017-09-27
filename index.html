@@ -5,6 +5,7 @@
    <script src="d3.v3.min.js"></script> 
    <script src="jquery.min.js"></script>
    <script src="d3CheckBox.js"></script>
+   <script src="echarts.js"></script>
 
 </head>    
 <body>
@@ -41,16 +42,20 @@ path{
   }
   #left{
     width: 68%;
-    height: 900px;
+    height: 850px;
     float: left;
     background-color:#f4a582;
+    
 
   }
+
+  
   #right{
     width: 32%;
-    height: 900px;
+    height: 850px;
     background-color: #f4a582;
     float: left;
+   
   }
   div.tooltip {
     position: absolute;
@@ -67,7 +72,9 @@ path{
 
 
 <div id="left">  
+
 <script>
+
 
 //init
     var out=[];
@@ -95,7 +102,7 @@ var svg = d3.select('#left')
 
     .append('svg')
     .attr({
-     "width": 1000,
+     "width": 900,
       "height":1000
     });
   
@@ -109,7 +116,7 @@ var svg = d3.select('#left')
 
   svg.append('text').attr('x', 54).attr('y', 37).style('fill', 'black').style('font-size', '14px').style('font-weight', 'bold').text('pumps');
 
-  svg.append('rect').attr('x', 100).attr('y', 25).style('fill', '#404040').attr('width',20).attr('height',20);
+  svg.append('rect').attr('x', 100).attr('y', 25).style('fill', '#92c5de').attr('width',20).attr('height',20);
 
   svg.append('rect').attr('x', 100).attr('y', 59).style('fill', '#ca0020').attr('width',20).attr('height',20);
 
@@ -148,7 +155,7 @@ var svg = d3.select('#left')
     svg.append('text').attr('x', 92).attr('y', 648).style('fill', 'black').style('font-size', '14px').style('font-weight', 'bold').text('>80');
     svg.append('rect').attr('x', 122).attr('y', 635).style('fill', '#91003f').attr('width',20).attr("height",20);
 
-
+  
 
 // draw streets
     d3.csv("streets.csv", function(data) {
@@ -272,15 +279,13 @@ mysvg.append('path')
         .attr("height",10) 
         .attr("rx",2)
         .attr("ry",2) 
-        .attr("fill","#404040");
+        .attr("fill","#92c5de");
 
 });
-
-    
-  
-
-</script>
+    </script>
 </div>
+
+   
 
 <div id="right">
 
@@ -299,7 +304,7 @@ mysvg.append('path')
      var svg2 = d3.select("#right")
     .append('svg')
     .attr({
-     "width": 1000,
+     "width": 445,
       "height":  900
     });
 
@@ -490,7 +495,7 @@ if(!checked&&!checked1) {
                     .attr("width",meta[1]*2+1)
                     .attr("height",19)
                     .attr("ide",i)
-                    .attr('fill','#404040')
+                    .attr('fill','black')
                     .attr("info",meta[1])
 
                     .attr("prior",function(d){
@@ -717,7 +722,9 @@ svg.append('text').attr('x', 340).attr('y', 361).style('fill', 'black').style('f
     
 </script>
 </div>
-
+<div >
+  <iframe width="100%" height="400px" src="11111.html"  frameborder="no" border="0" marginheight="0" scrolling="no"></iframe>
+</div>
 </body>
 </html>
 
